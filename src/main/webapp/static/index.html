@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC + AngularJS Demo</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/app.css"/>
+</head>
+<body ng-app="app" ng-controller="usersController">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header" ng-cloak>{{ pageHeader }}</h1>
+                <div class="alert" ng-class="style" ng-model="style" role="alert" ng-cloak>
+                    {{ statusMessage }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <form class="form">
+                    <input type="hidden" ng-model="user.id"/>
+                    <div class="form-group">
+                        <label>Enter name:
+                            <input type="text" class="form-control" ng-model="user.name"/>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter surname:
+                            <input type="text" class="form-control" ng-model="user.surname"/>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Enter email:
+                            <input type="email" class="form-control" ng-model="user.email"/>
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-primary" ng-click="newUser()" ng-cloak>New User</button>
+                    <button type="button" class="btn btn-success" ng-click="saveUser()" ng-cloak>Save User</button>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <table class="table table-hover">
+                    <tr class="success">
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th colspan="3">Email</th>
+                    </tr>
+                    <tr ng-repeat="user in users">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.surname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" ng-click="getUser(user)" ng-cloak>
+                                Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" ng-click="deleteUser(user)" ng-cloak>
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/webjars/angularjs/1.4.9/angular.min.js"></script>
+    <script src="/webjars/angularjs/1.4.9/angular-resource.min.js"></script>
+    <script src="/webjars/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/userController.js"></script>
+</body>
+</html>
